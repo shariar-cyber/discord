@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Thinkery — Creative Minds, One Place</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#070709;--panel:#0d0d11;--line:rgba(255,255,255,.09);--text:#f5f5f7;--muted:#9999a5;--accent:#9b7cff}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(rgba(255,255,255,.45) .6px,transparent .6px);background-size:5px 5px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
+a{text-decoration:none;color:inherit}
+.cursor{position:fixed;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(155,124,255,.16),transparent 65%);transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+nav{height:74px;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;border-bottom:1px solid var(--line);position:relative;z-index:5;background:rgba(7,7,9,.72);backdrop-filter:blur(18px)}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.04em}.mark{width:31px;height:31px;border:1px solid #777;border-radius:9px;display:grid;place-items:center;font-family:"DM Mono";font-size:12px}.navlinks{display:flex;gap:28px;color:#aaa;font-size:13px}.navlinks a:hover{color:#fff}
+.join{padding:10px 17px;border:1px solid #fff;border-radius:9px;font-size:13px;font-weight:700;transition:.25s}.join:hover{background:#fff;color:#000;transform:translateY(-2px)}
+.hero{min-height:calc(100vh - 74px);display:grid;place-items:center;text-align:center;position:relative;padding:100px 20px 80px;overflow:hidden}
+.glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(155,124,255,.18),transparent 65%);filter:blur(18px);animation:pulse 5s ease-in-out infinite}.glow.two{width:350px;height:350px;background:radial-gradient(circle,rgba(79,209,255,.11),transparent 65%);animation-delay:1.5s}
+@keyframes pulse{50%{transform:scale(1.16);opacity:.65}}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border:1px solid var(--line);background:rgba(255,255,255,.035);border-radius:999px;color:#bdbdc7;font:11px "DM Mono";margin-bottom:25px}.dot{width:6px;height:6px;background:#69e58b;border-radius:50%;box-shadow:0 0 14px #69e58b}
+h1{font-size:clamp(56px,10vw,128px);line-height:.86;letter-spacing:-.075em;max-width:1050px;position:relative;z-index:1}h1 span{background:linear-gradient(100deg,#fff 20%,#a48aff 55%,#6dd8ff 90%);-webkit-background-clip:text;color:transparent}
+.sub{max-width:620px;color:#a6a6b0;font-size:17px;line-height:1.7;margin:28px auto;position:relative;z-index:1}.actions{display:flex;justify-content:center;gap:12px;position:relative;z-index:1}.primary,.secondary{padding:14px 21px;border-radius:10px;font-weight:700;font-size:14px;transition:.25s}.primary{background:#fff;color:#070709}.secondary{border:1px solid var(--line);background:rgba(255,255,255,.035)}.primary:hover,.secondary:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.scroll{margin-top:80px;color:#666;font:10px "DM Mono";letter-spacing:.2em;position:relative;z-index:1}
+section{padding:110px 7vw;position:relative}.section-head{max-width:700px;margin-bottom:48px}.eyebrow{font:11px "DM Mono";color:#8f8f9a;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}.section-head h2{font-size:clamp(34px,5vw,64px);letter-spacing:-.06em}.section-head p{color:#8f8f9a;line-height:1.7;margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));padding:27px;border-radius:17px;min-height:190px;transition:.3s;position:relative;overflow:hidden}.card:after{content:"";position:absolute;width:100px;height:100px;background:rgba(155,124,255,.14);filter:blur(40px);right:-30px;bottom:-30px}.card:hover{transform:translateY(-7px);border-color:rgba(255,255,255,.2)}.icon{font-size:24px;margin-bottom:30px}.card h3{font-size:18px;margin-bottom:9px}.card p{color:#888894;font-size:13px;line-height:1.65}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.stat{padding:35px 20px;border-right:1px solid var(--line)}.stat:last-child{border:0}.num{font-size:35px;font-weight:800;letter-spacing:-.05em}.stat p{color:#777783;font-size:12px;margin-top:5px}
+.cta{margin:30px 7vw 100px;border:1px solid var(--line);border-radius:24px;padding:80px 30px;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(155,124,255,.14),transparent 55%),#0c0c10;position:relative;overflow:hidden}.cta h2{font-size:clamp(38px,6vw,76px);letter-spacing:-.065em}.cta p{color:#8e8e99;margin:17px auto 28px;max-width:530px;line-height:1.6}
+footer{padding:30px 7vw;color:#666;font-size:12px;border-top:1px solid var(--line);display:flex;justify-content:space-between}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){.navlinks{display:none}.grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}.stat{border-bottom:1px solid var(--line)}.hero{padding-top:80px}.actions{flex-direction:column;max-width:260px;margin:auto}section{padding:80px 6vw}}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<nav>
+  <a href="#" class="logo"><span class="mark">T</span> THE THINKERY</a>
+  <div class="navlinks"><a href="#about">About</a><a href="#inside">Inside</a><a href="#resources">Resources</a></div>
+  <a class="join" href="YOUR_DISCORD_INVITE" target="_blank">Join Discord ↗</a>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="glow"></div><div class="glow two"></div>
+  <div>
+    <div class="badge"><span class="dot"></span> A COMMUNITY FOR CREATIVE MINDS</div>
+    <h1>Think.<br><span>Create.</span><br>Connect.</h1>
+    <p class="sub">The Thinkery is a home for designers, developers, artists, editors, AI creators and curious minds — built to share ideas, resources and work.</p>
+    <div class="actions"><a class="primary" href="YOUR_DISCORD_INVITE" target="_blank">Enter The Thinkery ↗</a><a class="secondary" href="#inside">Explore the room ↓</a></div>
+    <div class="scroll">SCROLL TO EXPLORE</div>
+  </div>
+</section>
+
+<section id="about" class="reveal">
+  <div class="section-head"><div class="eyebrow">01 / Why The Thinkery</div><h2>One room.<br>Endless possibilities.</h2><p>Not another noisy server. A focused creative space where people learn, build, share and find collaborators.</p></div>
+  <div class="grid">
+    <article class="card"><div class="icon">◈</div><h3>Creative People</h3><p>Meet designers, developers, artists, editors, writers and creators from different disciplines.</p></article>
+    <article class="card"><div class="icon">⌁</div><h3>Useful Resources</h3><p>Fonts, templates, assets, tools, learning materials and carefully organized creative resources.</p></article>
+    <article class="card"><div class="icon">↗</div><h3>Build Together</h3><p>Share your work, get feedback, find collaborators and turn interesting ideas into real projects.</p></article>
+  </div>
+</section>
+
+<div class="stats reveal">
+  <div class="stat"><div class="num" data-target="∞">∞</div><p>Ideas</p></div>
+  <div class="stat"><div class="num">24/7</div><p>Creative Energy</p></div>
+  <div class="stat"><div class="num">01</div><p>Community</p></div>
+  <div class="stat"><div class="num">YOU</div><p>Missing Piece</p></div>
+</div>
+
+<section id="inside" class="reveal">
+  <div class="section-head"><div class="eyebrow">02 / Inside</div><h2>Come for the resources.<br>Stay for the people.</h2></div>
+  <div class="grid">
+    <article class="card"><div class="icon">🎨</div><h3>Creative Hub</h3><p>Graphic design, UI/UX, illustration, video, motion, 3D, photography, writing and more.</p></article>
+    <article class="card"><div class="icon">📦</div><h3>Resource Library</h3><p>Fonts, icons, templates, mockups, textures, audio, 3D assets and useful tools.</p></article>
+    <article class="card"><div class="icon">🤖</div><h3>AI & Tech</h3><p>Explore AI tools, workflows, creative coding and new technology shaping the creative world.</p></article>
+    <article class="card"><div class="icon">🖼️</div><h3>Showcase</h3><p>Put your work in front of people who understand the process and can give meaningful feedback.</p></article>
+    <article class="card"><div class="icon">🤝</div><h3>Collaboration</h3><p>Find people to work with, build teams and turn random ideas into actual projects.</p></article>
+    <article class="card"><div class="icon">🏆</div><h3>Challenges</h3><p>Creative challenges, community events and projects designed to keep you making.</p></article>
+  </div>
+</section>
+
+<section id="resources" class="reveal">
+  <div class="section-head"><div class="eyebrow">03 / The Philosophy</div><h2>Make something<br>worth sharing.</h2><p>The internet has plenty of content. The Thinkery is for people who want to make things.</p></div>
+</section>
+
+<div class="cta reveal">
+  <div class="eyebrow">THE DOOR IS OPEN</div>
+  <h2>Your next idea<br>starts here.</h2>
+  <p>Bring your curiosity, your unfinished project, your weird idea — or simply come hang out with people who create.</p>
+  <a class="primary" href="YOUR_DISCORD_INVITE" target="_blank">Join The Thinkery ↗</a>
+</div>
+</main>
+
+<footer><span>© 2026 The Thinkery</span><span>Think. Create. Connect.</span></footer>
+
+<script>
+const cursor=document.getElementById('cursor');
+window.addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
